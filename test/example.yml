@@ -1,0 +1,20 @@
+---
+
+- hosts: all
+  vars:
+    name: samba-test
+    env:
+      USERS: "opsxcq"
+      opsxcq: "admin"
+      SHARES_CONF: |
+        [Temp]
+        path = "/share/"
+        read only = no
+        writable = yes
+        valid users = opsxcq
+        write list = opsxcq
+        admin users = opsxcq
+    volumes:
+      - "/tmp:/share"
+  roles:
+    - role: ../..
